@@ -44,6 +44,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -53,6 +54,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -80,82 +82,122 @@ fun MonitorScreen(
     onRequestPhonePermission: () -> Unit,
     onTabSelected: (Int) -> Unit = {}
 ) {
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text(
-                            text = "Monitor de Dados",
-                            style = MaterialTheme.typography.titleLarge
-                        )
-                        Text(
-                            text = "Limite: 7GB | Consumo por app",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = onRefresh) {
-                        Icon(imageVector = Icons.Default.Refresh, contentDescription = "Atualizar")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    titleContentColor = MaterialTheme.colorScheme.onSurface
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.background)
+    ) {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.onBackground,
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Column {
+                            Text(
+                                text = "Monitor de Dados",
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                            if (state.employeeName != null) {
+                                Text(
+                                    text = "Funcionário: ${state.employeeName}" + if (state.isAdmin) " (Admin)" else "",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                                )
+                            }
+                            Text(
+                                text = "Limite: 7GB | Consumo por app",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                            )
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = onRefresh) {
+                            Icon(imageVector = Icons.Default.Refresh, contentDescription = "Atualizar")
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
+                        titleContentColor = MaterialTheme.colorScheme.onSurface,
+                        actionIconContentColor = MaterialTheme.colorScheme.onSurface
+                    )
                 )
-            )
-        },
-        bottomBar = {
-            NavigationBar {
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Resumo") },
-                    label = { Text("Resumo") },
-                    selected = state.selectedTab == 0,
-                    onClick = { onTabSelected(0) }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Apps, contentDescription = "Apps") },
-                    label = { Text("Apps") },
-                    selected = state.selectedTab == 1,
-                    onClick = { onTabSelected(1) }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.DataUsage, contentDescription = "Plano") },
-                    label = { Text("Plano") },
-                    selected = state.selectedTab == 2,
-                    onClick = { onTabSelected(2) }
-                )
-            }
-        }
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-        ) {
-            // Permissões no topo (se necessário)
-            if (!state.hasUsagePermission || !state.hasPhonePermission) {
-                Column(
-                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+            },
+            bottomBar = {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
+                    tonalElevation = 8.dp
                 ) {
-                    PermissionCards(
-                        hasUsagePermission = state.hasUsagePermission,
-                        hasPhonePermission = state.hasPhonePermission,
-                        onRequestUsagePermission = onRequestUsagePermission,
-                        onRequestPhonePermission = onRequestPhonePermission
+                    NavigationBarItem(
+                        icon = { Icon(Icons.Default.Home, contentDescription = "Resumo") },
+                        label = { Text("Resumo") },
+                        selected = state.selectedTab == 0,
+                        onClick = { onTabSelected(0) },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.White,
+                            unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                            selectedTextColor = Color.White,
+                            unselectedTextColor = Color.White.copy(alpha = 0.7f),
+                            indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+                        )
+                    )
+                    NavigationBarItem(
+                        icon = { Icon(Icons.Default.Apps, contentDescription = "Apps") },
+                        label = { Text("Apps") },
+                        selected = state.selectedTab == 1,
+                        onClick = { onTabSelected(1) },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.White,
+                            unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                            selectedTextColor = Color.White,
+                            unselectedTextColor = Color.White.copy(alpha = 0.7f),
+                            indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+                        )
+                    )
+                    NavigationBarItem(
+                        icon = { Icon(Icons.Default.DataUsage, contentDescription = "Plano") },
+                        label = { Text("Plano") },
+                        selected = state.selectedTab == 2,
+                        onClick = { onTabSelected(2) },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.White,
+                            unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                            selectedTextColor = Color.White,
+                            unselectedTextColor = Color.White.copy(alpha = 0.7f),
+                            indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+                        )
                     )
                 }
             }
+        ) { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+            ) {
+                // Permissões no topo (se necessário)
+                if (!state.hasUsagePermission || !state.hasPhonePermission) {
+                    Column(
+                        modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        PermissionCards(
+                            hasUsagePermission = state.hasUsagePermission,
+                            hasPhonePermission = state.hasPhonePermission,
+                            onRequestUsagePermission = onRequestUsagePermission,
+                            onRequestPhonePermission = onRequestPhonePermission
+                        )
+                    }
+                }
 
-            // Conteúdo baseado na tab selecionada
-            when (state.selectedTab) {
-                0 -> SummaryTab(state, onRangeSelected)
-                1 -> AppsTab(state, onRangeSelected)
-                2 -> DataPlanTab(state)
+                // Conteúdo baseado na tab selecionada
+                when (state.selectedTab) {
+                    0 -> SummaryTab(state, onRangeSelected)
+                    1 -> AppsTab(state, onRangeSelected)
+                    2 -> DataPlanTab(state)
+                }
             }
         }
     }
@@ -246,22 +288,24 @@ private fun UsageCards(state: UsageMonitorState) {
                 Text(
                     text = "Resumo",
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White
                 )
                 Text(
                     text = "Período: ${formatDateTime(totals.startTimeMillis)} – ${formatDateTime(totals.endTimeMillis)}",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                    color = Color.White.copy(alpha = 0.75f)
                 )
                 Text(
                     text = "Total consumido: ${formatBytes(totals.overallTotalBytes)}",
                     style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
                 Text(
                     text = "Última atualização: ${formatDateTime(state.lastUpdatedMillis)}",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    color = Color.White.copy(alpha = 0.6f)
                 )
             }
         }
@@ -308,17 +352,35 @@ private fun StatCard(
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f))
+                        .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f))
                         .padding(8.dp)
                 )
-                Text(text = title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White
+                )
             }
-            Text(text = "Download: $download", style = MaterialTheme.typography.bodySmall)
-            Text(text = "Upload: $upload", style = MaterialTheme.typography.bodySmall)
-            Text(text = "Total: $total", style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
+            Text(
+                text = "Download: $download",
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.White.copy(alpha = 0.85f)
+            )
+            Text(
+                text = "Upload: $upload",
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.White.copy(alpha = 0.85f)
+            )
+            Text(
+                text = "Total: $total",
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
         }
     }
 }
@@ -429,7 +491,7 @@ private fun DataPlanSummaryCard(status: DataPlanStatus) {
     val progressColor = when {
         status.usagePercentage >= 90 -> Color(0xFFE53935) // Vermelho
         status.usagePercentage >= 70 -> Color(0xFFFF9800) // Laranja
-        else -> Color(0xFF4CAF50) // Verde
+        else -> MaterialTheme.colorScheme.primary // Usa a cor primária do tema
     }
 
     ElevatedCard(
@@ -451,7 +513,8 @@ private fun DataPlanSummaryCard(status: DataPlanStatus) {
                 Text(
                     text = "Plano de Dados",
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
                 if (status.isOverLimit) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -489,11 +552,13 @@ private fun DataPlanSummaryCard(status: DataPlanStatus) {
                 ) {
                     Text(
                         text = "Usado: %.2f GB".format(status.usedGB),
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White
                     )
                     Text(
                         text = "Limite: %.1f GB".format(status.limitGB),
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White
                     )
                 }
             }
@@ -514,25 +579,26 @@ private fun DataPlanSummaryCard(status: DataPlanStatus) {
                     Text(
                         text = "Restante",
                         style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        color = Color.White.copy(alpha = 0.75f)
                     )
                     Text(
                         text = "%.2f GB".format(status.remainingGB),
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
-                        color = progressColor
+                        color = Color.White
                     )
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
                         text = "${status.daysRemainingInCycle} dias",
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
                     )
                     Text(
                         text = "até renovar",
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 }
             }
@@ -672,13 +738,13 @@ private fun AppUsageItem(app: AppUsageInfo) {
                                 imageVector = Icons.Default.NetworkCell,
                                 contentDescription = "Móvel",
                                 modifier = Modifier.size(12.dp),
-                                tint = MaterialTheme.colorScheme.primary
+                                tint = Color.White
                             )
                             Spacer(modifier = Modifier.width(2.dp))
                             Text(
                                 text = formatBytes(app.mobileTotalBytes),
                                 style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.primary
+                                color = Color.White
                             )
                         }
                     }
@@ -688,13 +754,13 @@ private fun AppUsageItem(app: AppUsageInfo) {
                                 imageVector = Icons.Default.NetworkWifi,
                                 contentDescription = "Wi-Fi",
                                 modifier = Modifier.size(12.dp),
-                                tint = MaterialTheme.colorScheme.secondary
+                                tint = Color.White
                             )
                             Spacer(modifier = Modifier.width(2.dp))
                             Text(
                                 text = formatBytes(app.wifiTotalBytes),
                                 style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.secondary
+                                color = Color.White
                             )
                         }
                     }
@@ -707,12 +773,12 @@ private fun AppUsageItem(app: AppUsageInfo) {
                     text = formatBytes(app.totalBytes),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
+                    color = Color.White
                 )
                 Text(
                     text = "Total",
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                    color = Color.White.copy(alpha = 0.7f)
                 )
             }
         }
@@ -829,7 +895,8 @@ private fun DataPlanDetailCard(status: DataPlanStatus) {
             Text(
                 text = "Seu Plano: 7 GB",
                 style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color.White
             )
 
             // Círculo de progresso grande
@@ -849,12 +916,12 @@ private fun DataPlanDetailCard(status: DataPlanStatus) {
                         text = "%.1f%%".format(status.usagePercentage),
                         style = MaterialTheme.typography.headlineLarge,
                         fontWeight = FontWeight.Bold,
-                        color = progressColor
+                        color = Color.White
                     )
                     Text(
                         text = "usado",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 }
             }
@@ -869,12 +936,12 @@ private fun DataPlanDetailCard(status: DataPlanStatus) {
                         text = "%.2f GB".format(status.usedGB),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFFE53935)
+                        color = Color.White
                     )
                     Text(
                         text = "Usado",
                         style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -882,12 +949,12 @@ private fun DataPlanDetailCard(status: DataPlanStatus) {
                         text = "%.2f GB".format(status.remainingGB),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF4CAF50)
+                        color = Color.White
                     )
                     Text(
                         text = "Restante",
                         style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 }
             }

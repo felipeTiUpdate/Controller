@@ -17,5 +17,7 @@ data class UsageMonitorState(
     val hasPhonePermission: Boolean = false,
     val lastUpdatedMillis: Long? = null,
     val errorMessage: String? = null,
-    val selectedTab: Int = 0 // 0 = Resumo, 1 = Apps, 2 = Plano
+    val selectedTab: Int = 0, // 0 = Resumo, 1 = Apps, 2 = Plano
+    val employeeName: String? = null,
+    val isAdmin: Boolean = false
 )

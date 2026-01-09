@@ -1,11 +1,16 @@
 package com.example.mobiledatamonitor
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mobiledatamonitor.data.BackendClient
+import com.example.mobiledatamonitor.data.BackendSyncHelper
 import com.example.mobiledatamonitor.data.DataPlanSettings
 import com.example.mobiledatamonitor.data.DataUsageRepository
 import com.example.mobiledatamonitor.data.UsageRange
+import com.example.mobiledatamonitor.data.UserManager
+import com.example.mobiledatamonitor.data.UserRole
 import com.example.mobiledatamonitor.permissions.hasPhoneStatePermission
 import com.example.mobiledatamonitor.permissions.hasUsageStatsPermission
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +24,11 @@ import kotlinx.coroutines.withContext
 
 class UsageMonitorViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val appContext = application.applicationContext
     private val repository = DataUsageRepository(application)
+    private val prefs = application.getSharedPreferences("data_monitor_prefs", Context.MODE_PRIVATE)
+    private val backendClient = BackendClient(appContext, prefs)
+    private val userManager = UserManager(prefs)
 
     private val _state = MutableStateFlow(UsageMonitorState())
     val state: StateFlow<UsageMonitorState> = _state
@@ -30,6 +39,8 @@ class UsageMonitorViewModel(application: Application) : AndroidViewModel(applica
         refreshPermissions()
         refreshUsage(force = true)
         scheduleAutoRefresh()
+        registerDeviceWithBackend()
+        loadEmployeeProfile()
     }
 
     fun onRangeSelected(range: UsageRange) {
@@ -70,6 +81,12 @@ class UsageMonitorViewModel(application: Application) : AndroidViewModel(applica
                 val dataPlanStatus = withContext(Dispatchers.IO) {
                     repository.getDataPlanStatus(_state.value.dataPlanSettings)
                 }
+
+                if (totals != null) {
+                    withContext(Dispatchers.IO) {
+                        BackendSyncHelper.syncDeltaIfNeeded(appContext, prefs, totals)
+                    }
+                }
                 
                 _state.update {
                     it.copy(
@@ -89,6 +106,26 @@ class UsageMonitorViewModel(application: Application) : AndroidViewModel(applica
                     )
                 }
             }
+        }
+    }
+
+    private fun registerDeviceWithBackend() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                backendClient.ensureDeviceId(DataPlanSettings())
+            } catch (_: Exception) {
+                // erro silencioso, não deve quebrar a UI
+            }
+        }
+    }
+
+    private fun loadEmployeeProfile() {
+        val employee = userManager.getCurrentEmployee()
+        _state.update {
+            it.copy(
+                employeeName = employee?.name,
+                isAdmin = employee?.role == UserRole.ADMIN
+            )
         }
     }
 
@@ -121,8 +158,8 @@ class UsageMonitorViewModel(application: Application) : AndroidViewModel(applica
         autoRefreshJob?.cancel()
         autoRefreshJob = viewModelScope.launch {
             while (true) {
-                delay(30_000)
-                refreshUsage()
+                delay(10_000)
+                refreshUsage(force = true)
             }
         }
     }

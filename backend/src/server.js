@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
 const devicesRouter = require('./routes/devices');
 const reportsRouter = require('./routes/reports');
@@ -9,6 +10,12 @@ const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
+
+// Log simples de requisições para ajudar a depurar integração com o app Android
+app.use((req, _res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });

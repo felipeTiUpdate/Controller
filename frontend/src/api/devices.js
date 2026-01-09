@@ -11,6 +11,3 @@ export const updateDevice = (deviceId, payload) =>
   api.put(`/devices/${deviceId}`, payload).then((res) => res.data);
 
 export const deleteDevice = (deviceId) => api.delete(`/devices/${deviceId}`).then((res) => res.data);
-
-export const createUsageEntry = (deviceId, payload) =>
-  api.post(`/devices/${deviceId}/usage`, payload).then((res) => res.data);

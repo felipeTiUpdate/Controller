@@ -1,9 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-40:12
-INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-40:12
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:1-53:12
+MERGED from [androidx.databinding:viewbinding:8.4.0] C:\Users\Mar Brasil\.gradle\caches\transforms-4\d1648447697f3fc3d87e43d5c62207ea\transformed\viewbinding-8.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Mar Brasil\.gradle\caches\transforms-4\65240c2e61dd7306c0ef98078a772d21\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\Mar Brasil\.gradle\caches\transforms-4\300c260db8b2ac419788248715d47e2c\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\Mar Brasil\.gradle\caches\transforms-4\4946c2e3d3a47846a66587f6c4558c11\transformed\recyclerview-1.3.2\AndroidManifest.xml:17:1-22:12
@@ -91,29 +92,39 @@ MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Mar Brasil\.gradle\caches\
 		INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:5:5-75
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:6:5-75
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:5:22-72
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:6:22-72
 uses-permission#android.permission.PACKAGE_USAGE_STATS
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:6:5-8:47
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:7:5-9:47
 	tools:ignore
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:8:9-44
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:9:9-44
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:7:9-62
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:8:9-62
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:9:5-77
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:10:5-77
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:9:22-74
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:10:22-74
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:10:5-81
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:11:5-81
 MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\Mar Brasil\.gradle\caches\transforms-4\1fd7fb5d30a051711a158bdbde277410\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:5-81
 MERGED from [androidx.work:work-runtime:2.9.0] C:\Users\Mar Brasil\.gradle\caches\transforms-4\1fd7fb5d30a051711a158bdbde277410\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:5-81
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:10:22-78
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:11:22-78
+uses-permission#android.permission.QUERY_ALL_PACKAGES
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:12:5-14:53
+	tools:ignore
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:14:9-50
+	android:name
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:13:9-61
 application
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:12:5-38:19
-INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:12:5-38:19
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:16:5-51:19
+INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:16:5-51:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\Mar Brasil\.gradle\caches\transforms-4\4b50395b498c508206cbfb8528b9095d\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\Mar Brasil\.gradle\caches\transforms-4\4b50395b498c508206cbfb8528b9095d\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\Mar Brasil\.gradle\caches\transforms-4\a09405e2ae17a9b232213c543c1e6b33\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
@@ -139,59 +150,79 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Mar Brasil\.gradle
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] C:\Users\Mar Brasil\.gradle\caches\transforms-4\995718abbb597422d1a82bd475f3b7c9\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:19:9-35
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:23:9-35
 	android:label
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:17:9-41
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:21:9-41
 	android:fullBackupContent
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:15:9-54
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:19:9-54
 	android:roundIcon
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:18:9-54
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:22:9-54
 	android:icon
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:16:9-43
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:20:9-43
 	android:allowBackup
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:17:9-35
 	android:theme
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:20:9-55
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:25:9-55
 	android:dataExtractionRules
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:14:9-65
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:18:9-65
+	android:usesCleartextTraffic
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:24:9-44
 activity#com.example.mobiledatamonitor.MainActivity
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:21:9-24:62
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:26:9-29:62
 	android:exported
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:23:13-36
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:28:13-36
 	android:theme
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:24:13-59
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:29:13-59
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:22:13-41
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:27:13-41
 activity#com.example.mobiledatamonitor.PasswordActivity
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:25:9-33:20
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:30:9-38:20
 	android:exported
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:27:13-36
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:32:13-36
 	android:theme
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:28:13-59
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:33:13-59
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:26:13-45
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:31:13-45
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:29:13-32:29
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:34:13-37:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:30:17-69
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:35:17-69
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:30:25-66
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:35:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:31:17-77
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:36:17-77
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:31:27-74
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:36:27-74
+activity#com.example.mobiledatamonitor.EditAppLimitActivity
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:39:9-42:62
+	android:exported
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:41:13-37
+	android:theme
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:42:13-59
+	android:name
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:40:13-49
+activity#com.example.mobiledatamonitor.EmployeeSetupActivity
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:43:9-46:62
+	android:exported
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:45:13-37
+	android:theme
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:46:13-59
+	android:name
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:44:13-50
 service#com.example.mobiledatamonitor.AppMonitoringService
-ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:34:9-37:82
+ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:47:9-50:82
 	android:permission
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:37:13-79
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:50:13-79
 	android:foregroundServiceType
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:36:13-60
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:49:13-60
 	android:name
-		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:35:13-49
+		ADDED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml:48:13-49
 uses-sdk
 INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Mar Brasil\Desktop\Controller\android-app\app\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.4.0] C:\Users\Mar Brasil\.gradle\caches\transforms-4\d1648447697f3fc3d87e43d5c62207ea\transformed\viewbinding-8.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.4.0] C:\Users\Mar Brasil\.gradle\caches\transforms-4\d1648447697f3fc3d87e43d5c62207ea\transformed\viewbinding-8.4.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Mar Brasil\.gradle\caches\transforms-4\65240c2e61dd7306c0ef98078a772d21\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Mar Brasil\.gradle\caches\transforms-4\65240c2e61dd7306c0ef98078a772d21\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\Mar Brasil\.gradle\caches\transforms-4\300c260db8b2ac419788248715d47e2c\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44

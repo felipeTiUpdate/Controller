@@ -666,6 +666,9 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable bg_app_gradient
+drawable bg_item_app_limit
+drawable bg_surface_card
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -783,6 +786,10 @@ id dialog_button
 id disableHome
 id edit_query
 id edit_text_id
+id employee_email_input
+id employee_name_input
+id employee_phone_input
+id employee_role_group
 id end
 id expand_activities_button
 id expanded_menu
@@ -827,6 +834,10 @@ id radio
 id report_drawn
 id right_icon
 id right_side
+id role_admin
+id role_common
+id save_button
+id save_employee_button
 id screen
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -875,6 +886,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id time
 id time_limit
+id time_limit_input
 id title
 id titleDividerNoCustom
 id title_template
@@ -933,6 +945,8 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_edit_app_limit
+layout activity_employee_setup
 layout activity_password
 layout activity_settings
 layout custom_dialog

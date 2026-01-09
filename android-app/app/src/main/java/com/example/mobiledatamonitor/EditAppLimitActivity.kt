@@ -29,8 +29,8 @@ class EditAppLimitActivity : AppCompatActivity() {
         }
         
         binding.saveButton.setOnClickListener {
-            val timeLimitMinutes = binding.timeLimitInput.text.toString().toLongOrNull() ?: 10
-            val timeLimitMs = timeLimitMinutes * 60 * 1000
+            val timeLimitMinutes = binding.timeLimitInput.text.toString().toLongOrNull() ?: 10L
+            val timeLimitMs = timeLimitMinutes * 60 * 1000L  // Add 'L' suffix to make it Long
             val isWhitelisted = binding.whitelistCheckbox.isChecked
             
             lifecycleScope.launch {

@@ -2,14 +2,13 @@ import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { getDeviceUsage, createUsageEntry, deleteDevice } from '../api/devices.js';
+import { getDeviceUsage, deleteDevice } from '../api/devices.js';
 import SectionHeader from '../components/SectionHeader.jsx';
 import Button from '../components/Button.jsx';
 import RangeSelector from '../components/RangeSelector.jsx';
 import LoadingState from '../components/LoadingState.jsx';
 import ErrorState from '../components/ErrorState.jsx';
 import Modal from '../components/Modal.jsx';
-import UsageEntryForm from '../components/UsageEntryForm.jsx';
 import { formatDateTime, formatMegabytes } from '../utils/formatting.js';
 
 function DeviceDetailPage() {
@@ -20,23 +19,12 @@ function DeviceDetailPage() {
     startDate: dayjs().startOf('month').format('YYYY-MM-DD'),
     endDate: dayjs().format('YYYY-MM-DD'),
   });
-  const [isUsageModalOpen, setUsageModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const usageQuery = useQuery({
     queryKey: ['devices', deviceId, 'usage', range],
     queryFn: () => getDeviceUsage(deviceId, range),
     enabled: Boolean(deviceId),
-  });
-
-  const createUsageMutation = useMutation({
-    mutationFn: (payload) => createUsageEntry(deviceId, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['devices'] });
-      queryClient.invalidateQueries({ queryKey: ['devices', deviceId, 'usage'] });
-      queryClient.invalidateQueries({ queryKey: ['reports'] });
-      setUsageModalOpen(false);
-    },
   });
 
   const deleteMutation = useMutation({
@@ -106,7 +94,6 @@ function DeviceDetailPage() {
               <Button variant="ghost" onClick={() => setDeleteModalOpen(true)}>
                 Remover dispositivo
               </Button>
-              <Button onClick={() => setUsageModalOpen(true)}>Registrar consumo</Button>
             </div>
           }
         />
@@ -157,11 +144,8 @@ function DeviceDetailPage() {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="font-display text-lg font-semibold text-white">Registros de consumo</h2>
-            <p className="text-sm text-white/60">Entradas detalhadas por evento de uso de dados</p>
+            <p className="text-sm text-white/60">Entradas detalhadas sincronizadas a partir do aplicativo</p>
           </div>
-          <Button variant="ghost" onClick={() => setUsageModalOpen(true)}>
-            Novo registro
-          </Button>
         </div>
 
         <div className="mt-6 overflow-x-auto">
@@ -195,18 +179,6 @@ function DeviceDetailPage() {
           </table>
         </div>
       </div>
-
-      <Modal
-        open={isUsageModalOpen}
-        onClose={() => setUsageModalOpen(false)}
-        title="Registrar consumo de dados"
-      >
-        <UsageEntryForm
-          submitting={createUsageMutation.isLoading}
-          onCancel={() => setUsageModalOpen(false)}
-          onSubmit={(payload) => createUsageMutation.mutate(payload)}
-        />
-      </Modal>
 
       <Modal open={isDeleteModalOpen} onClose={() => setDeleteModalOpen(false)} title="Remover dispositivo">
         <div className="space-y-6 text-white/80">

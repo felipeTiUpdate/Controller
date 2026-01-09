@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { listDevices, createDevice, updateDevice, deleteDevice } from '../api/devices.js';
+import { listDevices, updateDevice, deleteDevice } from '../api/devices.js';
 import SectionHeader from '../components/SectionHeader.jsx';
 import Button from '../components/Button.jsx';
 import DeviceCard from '../components/DeviceCard.jsx';
@@ -14,22 +14,12 @@ import { formatMegabytes } from '../utils/formatting.js';
 
 function DevicesPage() {
   const queryClient = useQueryClient();
-  const [isCreateOpen, setCreateOpen] = useState(false);
   const [editDevice, setEditDevice] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
 
   const devicesQuery = useQuery({
     queryKey: ['devices'],
     queryFn: () => listDevices(),
-  });
-
-  const createMutation = useMutation({
-    mutationFn: createDevice,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['devices'] });
-      queryClient.invalidateQueries({ queryKey: ['reports'] });
-      setCreateOpen(false);
-    },
   });
 
   const updateMutation = useMutation({
@@ -84,7 +74,6 @@ function DevicesPage() {
           title="Inventário de Dispositivos"
           subtitle="Gerencie franquias de dados e acompanhe o consumo de cada linha monitorada"
         />
-        <Button onClick={() => setCreateOpen(true)}>Cadastrar dispositivo</Button>
       </div>
 
       <div className="grid gap-4 rounded-3xl border border-white/5 bg-white/5 p-6 shadow-card backdrop-blur">
@@ -123,23 +112,9 @@ function DevicesPage() {
       ) : (
         <EmptyState
           title="Nenhum dispositivo cadastrado"
-          description="Comece adicionando as linhas ou roteadores que deseja monitorar. Você poderá configurar a franquia mensal e registrar o consumo de dados em tempo real."
-          action={<Button onClick={() => setCreateOpen(true)}>Cadastrar dispositivo</Button>}
+          description="Instale o aplicativo de celular nos dispositivos que deseja monitorar. Eles aparecerão aqui automaticamente quando forem usados."
         />
       )}
-
-      <Modal
-        open={isCreateOpen}
-        onClose={() => setCreateOpen(false)}
-        title="Cadastrar dispositivo"
-        actions={null}
-      >
-        <DeviceForm
-          submitting={createMutation.isLoading}
-          onCancel={() => setCreateOpen(false)}
-          onSubmit={(payload) => createMutation.mutate(payload)}
-        />
-      </Modal>
 
       <Modal
         open={Boolean(editDevice)}
